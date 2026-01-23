@@ -1,0 +1,7 @@
+services:
+  nginx:
+    image: traefik/whoami:v1.11
+    restart: unless-stopped
+    ports:
+      - 8989:80
+networks: {}
