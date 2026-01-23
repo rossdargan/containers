@@ -1,0 +1,23 @@
+services:
+  termix:
+    image: ghcr.io/lukegus/termix:latest
+    container_name: termix
+    restart: unless-stopped
+    ports:
+      - 7070:8080
+    volumes:
+      - /docker/termix-data:/app/data
+    environment:
+      PORT: "8080"
+    labels:
+      - pangolin.proxy-resources.termix.name=Termix
+      - pangolin.proxy-resources.termix.full-domain=termix.dargan.uk
+      - pangolin.proxy-resources.termix.auth.sso-enabled=true
+      - pangolin.proxy-resources.termix.auth.sso-roles[0]=Member
+      - pangolin.proxy-resources.termix.protocol=http
+      - pangolin.proxy-resources.termix.targets[0].method=http
+      - pangolin.proxy-resources.termix.targets[0].port=8080
+networks:
+  default:
+    external: true
+    name: shared-net
