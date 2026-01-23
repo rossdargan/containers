@@ -11,7 +11,7 @@ services:
       PORT: "8080"
     labels:
       - pangolin.proxy-resources.termix.name=Termix
-      - pangolin.proxy-resources.termix.full-domain=termix.dargan.uk
+      - pangolin.proxy-resources.termix.full-domain=termix.${DOMAIN}
       - pangolin.proxy-resources.termix.auth.sso-enabled=true
       - pangolin.proxy-resources.termix.auth.sso-roles[0]=Member
       - pangolin.proxy-resources.termix.protocol=http
