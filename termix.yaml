@@ -19,5 +19,5 @@ services:
       - pangolin.proxy-resources.termix.targets[0].port=8080
 networks:
   default:
-    external: true
     name: shared-net
+    external: true
