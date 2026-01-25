@@ -2,6 +2,15 @@ services:
   nginx:
     image: traefik/whoami:v1.11
     restart: unless-stopped
-    ports:
-      - 8989:80
-networks: {}
+    labels:
+      - pangolin.proxy-resources.termix.name=Who Am I
+      - pangolin.proxy-resources.termix.full-domain=termix.${DOMAIN}
+      - pangolin.proxy-resources.termix.auth.sso-enabled=true
+      - pangolin.proxy-resources.termix.auth.sso-roles[0]=Member
+      - pangolin.proxy-resources.termix.protocol=http
+      - pangolin.proxy-resources.termix.targets[0].method=http
+      - pangolin.proxy-resources.termix.targets[0].port=80      
+networks:
+  default:
+    name: shared-net
+    external: true
