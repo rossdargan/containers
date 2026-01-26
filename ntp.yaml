@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  ntp:
+    container_name: ntp
+    image: cturra/ntp
+    restart: always
+    ports:
+      - 123:123/udp
