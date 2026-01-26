@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  frigate:
+    container_name: frigate
+    privileged: true
+    restart: unless-stopped
+    image: ghcr.io/blakeblackshear/frigate:0.17.0-beta1
+    shm_size: 1024mb
+    devices:
+      - /dev/dri/renderD128
+      - /dev/dri:/dev/dri
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /docker/frigate:/config
+      - /mnt/nvr/:/media/frigate
+      - type: tmpfs
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
+    ports:
+      - 5000:5000
+      - 8080:8080
+      - 8971:8971
+      - 8554:8554
+      - 8555:8555/tcp
+      - 8555:8555/udp
+      - 1984:1984
+    healthcheck:
+      test: >
+        curl -s http://localhost:5000/api/stats | grep -o '"detection_fps":[0]'
+        && exit 1 || exit 0
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    environment:
+      TZ: Europe/London
+      FRIGATE_RTSP_PASSWORD: ${RTSP_PASSWORD}
+      PLUS_API_KEY: ${PLUS_API_KEY}
+volumes: {}
+networks: {}
