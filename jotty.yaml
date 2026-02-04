@@ -1,3 +1,4 @@
+services:
   jotty:
     image: ghcr.io/fccview/jotty:latest
     container_name: jotty
