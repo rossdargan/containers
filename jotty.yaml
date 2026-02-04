@@ -11,3 +11,18 @@
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+      - SSO_MODE=oidc
+      - OIDC_ISSUER=https://login.${DOMAIN}/issuer/path
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+      - APP_URL=https://${APP_URL} # if not set defaults to http://localhost:<port>
+      # Optional security enhancements:
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET} # Enable confidential client mode (if your provider requires it)
+      - SSO_FALLBACK_LOCAL=yes # Allow both SSO and local login
+      - OIDC_ADMIN_GROUPS=admins # Map IDP groups claim to admin role
+      - OIDC_ADMIN_ROLES=admins # Map IDP roles claim to admin role
+      - OIDC_USER_GROUPS=jotty_users,app_users # Restrict access to users in these groups (admins always allowed)
+      - OIDC_USER_ROLES=user,member # Restrict access to users with these roles (admins always allowed)
+      - OIDC_GROUPS_SCOPE=groups # Scope to request for groups (set to empty string or "no" to disable for providers like Entra ID)
+      #- OIDC_LOGOUT_URL=https://authprovider.local/realms/master/logout # Custom logout URL for global logout
+      # Optional for reverse proxy issues:
+      # - INTERNAL_API_URL=http://localhost:3000 # Use if getting 403 errors after SSO login
