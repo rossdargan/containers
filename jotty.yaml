@@ -13,7 +13,7 @@ services:
     environment:
       - NODE_ENV=production
       - SSO_MODE=oidc
-      - OIDC_ISSUER=https://login.${DOMAIN}/issuer/path
+      - OIDC_ISSUER=https://login.${DOMAIN}
       - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
       - APP_URL=https://${APP_URL} # if not set defaults to http://localhost:<port>
       # Optional security enhancements:
