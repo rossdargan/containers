@@ -34,7 +34,7 @@ services:
       - STARTER_TRANSPORT=http
       - PORT=3000
       - CORS_ORIGIN=*
-      - JOTTY_BASE_URL=http://jotty
+      - JOTTY_BASE_URL=http://jotty:3000
       - JOTTY_API_KEY=${JOTTY_API_KEY}
       - API_KEY=${API_KEY}
     ports:
