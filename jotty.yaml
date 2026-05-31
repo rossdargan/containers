@@ -28,7 +28,7 @@ services:
       # Optional for reverse proxy issues:
       # - INTERNAL_API_URL=http://localhost:3000 # Use if getting 403 errors after SSO login
   jotty-mcp-server:
-    image: git.jreed.me/jreed/jotty-mcp-server:latest
+    image: ghcr.io/jr33d/jotty-mcp-server:latest
     container_name: jotty-mcp-server
     environment:
       - STARTER_TRANSPORT=http
