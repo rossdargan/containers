@@ -38,7 +38,7 @@ services:
       - JOTTY_API_KEY=${JOTTY_API_KEY}
       - API_KEY=${API_KEY}
     ports:
-      - "3000:3000"
+      - "3002:3000"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
