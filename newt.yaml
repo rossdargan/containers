@@ -10,7 +10,14 @@ services:
       - NEWT_ID=${NEWT_ID}
       - NEWT_SECRET=${NEWT_SECRET}
       - DOCKER_SOCKET=/var/run/docker.sock
+    networks:
+      - shared-net
+      - junglemcp
+
 networks:
-  default:
+  shared-net:
     name: shared-net
+    external: true
+  junglemcp:
+    name: some-other-net
     external: true
