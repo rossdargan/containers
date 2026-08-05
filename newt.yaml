@@ -19,5 +19,5 @@ networks:
     name: shared-net
     external: true
   junglemcp:
-    name: some-other-net
+    name: junglemcp
     external: true
